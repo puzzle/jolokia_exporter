@@ -23,6 +23,10 @@ var (
 // Code from https://stackoverflow.com/questions/20767724/converting-unknown-interface-to-float64-in-golang
 // working example at https://play.golang.org/p/v-QrbeOWtz
 func toFloat(unk interface{}) (float64, error) {
+	if unk == nil {
+		return math.NaN(), errNotAFloat
+	}
+
 	switch i := unk.(type) {
 	case float64:
 		return i, nil
